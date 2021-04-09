@@ -12,7 +12,7 @@ export class Food extends React.Component{
   newFood()
   {
     var xpos,ypos
-    do{
+    do{//this is bad, pls change
       xpos= getRandom(constant.boardSizeInSquares)
       ypos= getRandom(constant.boardSizeInSquares)
     }while(!this.props.snakePos.every(nodePos=>!(nodePos.xpos===xpos && nodePos.ypos===ypos)))

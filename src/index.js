@@ -7,6 +7,9 @@ import {Food} from './food.js'
 import * as constant from './constants.js'
 import {Position} from './position'
 import {getRandom} from './utility.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 class Game extends React.Component{
   render(){
@@ -108,6 +111,7 @@ class Start extends React.Component{
     this.setState({startDisabled:false})
     clearInterval(this.idInterval)
     this.setState({score:0})
+    this.positions=[new Position(getRandom(constant.boardSizeInSquares),getRandom(constant.boardSizeInSquares))]
   }
   increaseScore(){
     this.setState({score:this.state.score+1})
@@ -120,15 +124,15 @@ class Start extends React.Component{
     <Head headPos={this.positions[0]} direction={this.state.direction}/>
     
 
-    <button disabled={this.state.startDisabled}onClick={this.start}
+    <Button variant="outline-success" disabled={this.state.startDisabled}onClick={this.start}
       style={{position: "absolute",
       top:100,left:constant.boardSize + 100,
-      height:70,width:150}}>START</button>
-      <button disabled={!(this.state.startDisabled)}onClick={this.stop}
+      height:70,width:150}}>START</Button>
+      <Button variant="outline-warning" disabled={!(this.state.startDisabled)}onClick={this.stop}
       style={{position: "absolute",
       top:200,left:constant.boardSize + 100,
-      height:70,width:150}}>STOP</button>
-      Score: {this.state.score}
+      height:70,width:150}}>STOP</Button>
+      <Alert variant='info'>Score: {this.state.score}</Alert>
     </div>)
   }
 }
