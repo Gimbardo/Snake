@@ -1,6 +1,7 @@
 import React from 'react'
 import * as constant from './constants.js'
 
+
 export class Head extends React.Component{
   
   render(){

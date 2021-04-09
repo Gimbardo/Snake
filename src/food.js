@@ -2,6 +2,8 @@ import React from 'react';
 import {getRandom} from './utility.js'
 import * as constant from './constants.js'
 import {Position} from './position.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Image} from 'react-bootstrap';
 
 export class Food extends React.Component{
   constructor(props){
@@ -28,8 +30,8 @@ export class Food extends React.Component{
   }
   render(){
     this.Eat()
-    return<div style={{position:"absolute", backgroundColor:"red",
+    return<Image style={{position:"absolute", backgroundColor:"red",
     height:constant.snakeSize, width:constant.snakeSize,
-    top:this.state.ypos*constant.snakeSize,left:this.state.xpos*constant.snakeSize}}></div>
+    top:this.state.ypos*constant.snakeSize,left:this.state.xpos*constant.snakeSize}} roundedCircle></Image>
   }
 }
