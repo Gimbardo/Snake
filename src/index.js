@@ -75,11 +75,16 @@ class Start extends React.Component{
     }
     this.positions.pop()
     
-    if(this.positions.slice(1).find((position)=>(this.positions[0].xpos===position.xpos)&&(this.positions[0].ypos===position.ypos) )){
+    if(this.youLostCheck()){
       this.positions=[new Position(getRandom(constant.boardSizeInSquares),getRandom(constant.boardSizeInSquares))]
+      alert('GAME OVER Score: '+this.state.score)
       this.stop()
     }
     this.forceUpdate()
+  }
+
+  youLostCheck(){
+    return this.positions.slice(1).find((position)=>(this.positions[0].xpos===position.xpos)&&(this.positions[0].ypos===position.ypos) )
   }
 
   handleKeyDown(e) {
@@ -115,9 +120,14 @@ class Start extends React.Component{
   }
   increaseScore(){
     this.setState({score:this.state.score+1})
+    if(this.state.score+1 >= 399){//damn you sync methods
+      alert('Hai vinto :)')
+      this.stop()
+    }
   }
   render(){ 
     onkeydown=this.handleKeyDown
+    
     return (<div onkeypress={this.handleKeyDown}>
     <Food snakePos={this.positions} increaseScore={this.increaseScore}/>
     <Tail tailPos={this.positions.slice(1)} direction={this.state.direction}/>
